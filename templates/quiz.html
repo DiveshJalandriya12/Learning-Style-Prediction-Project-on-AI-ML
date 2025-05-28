@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Learning Style Quiz</h1>
+    <form action="{{ url_for('quiz') }}" method="post">
+        {% set counter = 1 %}
+        {% for question in questions %}
+            <div>
+                <p>{{ counter }}. {{ question['Sentence'] }}</p>
+                <input type="radio" id="q{{ counter }}_agree" name="q{{ counter }}" value="3" required>
+                <label for="q{{ counter }}_agree">Agree</label><br>
+                <input type="radio" id="q{{ counter }}_slightly_agree" name="q{{ counter }}" value="2">
+                <label for="q{{ counter }}_slightly_agree">Slightly Agree</label><br>
+                <input type="radio" id="q{{ counter }}_slightly_disagree" name="q{{ counter }}" value="1">
+                <label for="q{{ counter }}_slightly_disagree">Slightly Disagree</label><br>
+                <input type="radio" id="q{{ counter }}_disagree" name="q{{ counter }}" value="0">
+                <label for="q{{ counter }}_disagree">Disagree</label><br>
+            </div>
+            {% set counter = counter + 1 %}
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
